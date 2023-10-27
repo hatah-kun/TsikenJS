@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="keyframes.css" />
+    <link rel="icon" type="image/x-icon" href="assets\icon.ico">
+    <title>TSIKEN</title>
+  </head>
+  <body class="green">
+    <!-- menu -->
+    <div id="menu" class="section">
+      <span class="title">TSIKEN</span>
+      <button class="button2" onclick="Info()">INFO</button>
+      <div class="submenu">
+        <div class="supersubmenu">
+          <img id="profile" src="characters\hero\bigshow.png" alt="" />
+          <br />
+          <span id="profileName" class="menuSpan"></span>
+          <div id="buffContainer">
+            <span id="buffHP">HEALTH: +0</span>
+            <span id="buffArmor">ARMOR: +0</span>
+            <span id="buffCharge">MANA: +0</span>
+            <span id="buffBasic">BASIC ATTACK: +0</span>
+            <span id="buffUlt">CRITICAL ATTACK: +0</span>
+          </div>
+        </div>
+
+        <div class="supersubmenu">
+          <span class="menuSpan">CHOOSE YOUR FIGHTER!</span>
+          <br />
+          <div id="charactersMenu"></div>
+          <button id="startBot" class="buttons">START</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- maingame -->
+    <div id="game" class="section">
+      <button id="exit" class="button2" onclick="Reset()">EXIT</button>
+      <span class="title">TSIKEN</span>
+      <div id="stage">
+        <div class="labels">
+          <!-- hero infos -->
+          <div class="infos">
+            <span id="disHeroName" class="infodisName"></span>
+            <div style="text-align: right">
+              <span id="heroStatusText" class="statusText"></span>
+              <div class="bars" id="heroBars">
+                <div class="barBG">
+                  <div id="heroHealthBar" class="barFG" style="width: 20%">
+                    <div id="heroShieldBar" class="barFG ShieldBar"></div>
+                  </div>
+                </div>
+                <div class="barBG mana">
+                  <div
+                    id="heroManaBar"
+                    class="barFG manaBar"
+                    style="width: 20%"
+                  ></div>
+                </div>
+                <div id="shieldContainer" class=""></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vs">
+            <span id="levelDisplay">LEVEL 1</span>
+            <img src="assets\vs.png" alt="vs" width="250" height="auto" />
+          </div>
+
+          <!-- enemy infos -->
+          <div class="infos">
+            <span id="disEnemyName" class="infodisName"></span>
+            <div style="text-align: left">
+              <span id="enemyStatusText" class="statusText"></span>
+              <div class="bars">
+                <div class="barBG">
+                  <div id="enemyHealthBar" class="barFG" style="width: 20%">
+                    <div id="enemyShieldBar" class="barFG ShieldBar"></div>
+                  </div>
+                </div>
+                <div class="barBG mana">
+                  <div
+                    id="enemyManaBar"
+                    class="barFG manaBar"
+                    style="width: 20%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- battle scene -->
+        <div class="battleGround">
+          <img src="" alt="" id="heroCharacter" class="bodies" />
+          <img src="" alt="" id="enemyCharacter" class="bodies" />
+          <img src="assets\spark.gif" alt="" id="spark" class="bodies" />
+          <div id="heroUpdate" class="playerNotif">
+            <span id="heronotif" class="spannotif">Critical Attack</span>
+          </div>
+          <div id="enemyUpdate" class="playerNotif">
+            <span id="enemynotif" class="spannotif">Critical Attack</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- buttons -->
+      <div class="botlist">
+        <button
+          class="controls buttons"
+          value="1"
+          id="BAbot"
+          onclick="PlayerMove(this.value)"
+        >
+          Basic Attack
+        </button>
+        <button
+          class="controls buttons"
+          value="2"
+          id="CAbot"
+          onclick="PlayerMove(this.value)"
+        >
+          Critical Attack
+        </button>
+        <button
+          class="controls buttons"
+          value="3"
+          id="Dbot"
+          onclick="PlayerMove(this.value)"
+        >
+          Defense
+        </button>
+        <button
+          class="controls buttons"
+          value="4"
+          id="Cbot"
+          onclick="PlayerMove(this.value)"
+        >
+          Charge
+        </button>
+      </div>
+    </div>
+
+    <!-- win modal -->
+    <div class="modal-bg" id="winModal">
+      <div class="modal">
+        <h1>YOU WIN!</h1>
+        <img
+          id="player-character"
+          src="characters\hero\underwater chicken.png"
+          alt=""
+        />
+        <span id="winmodalName"></span>
+        <span id="bonus">Bonus points: 90</span>
+        <button id="nextPlay" class="buttons">CONTINUE</button>
+      </div>
+    </div>
+
+    <!-- daog modal -->
+    <div class="modal-bg" id="lossModal">
+      <div class="modal">
+        <h1>ROASTED!</h1>
+        <img src="assets\roasted.png" alt="" />
+        <span id="lossmodalName"></span>
+        <button id="restart" class="buttons">RESTART</button>
+      </div>
+    </div>
+
+    <div class="modal-bg" id="finishModal">
+      <div class="modal">
+        <h1>GAME FINISHED!</h1>
+        <img class="popper" src="assets\popper.gif" alt="" />
+        <img src="" id="finishMCimg" />
+        <div id="enemyContainerModal"></div>
+        <button id="finishMENU" class="buttons" onclick="Menu()">MENU</button>
+      </div>
+    </div>
+
+    <div class="modal-bg" id="instruction">
+      <div class="modal">
+        <button class="modalExit" onclick="Info()">X</button>
+        <h4 class="modallogo">TSIKEN</h4>
+        <div class="context">
+          <p>
+            Get ready for Tsiken, a 2D fighting game by Hatah Nicolas, inspired
+            by Tekken. It's a solo player where you'll go 'beak to beak' with
+            feisty chicken characters, and the goal is to emerge as the champion
+            among Tsiken's feathered rivals.
+          </p>
+          <span>MECHANICS</span>
+          <ul>
+            <b>CHOOSE CHARACTER</b>
+            <li>
+              Select your fighter (the character you want to play with). Take a
+              look at their stats board. Each character comes with its unique
+              buffs.
+            </li>
+          </ul>
+
+          <ul>
+            <b> STATS</b>
+            <li>
+              HEALTH: Represents your player's vitality, which decreases when
+              taking damage.
+            </li>
+            <li>
+              ARMOR: Provides an additional layer of protection for your health,
+              and it's the first line of defense against incoming damage.
+            </li>
+            <li>
+              MANA: Represents the energy your attacks require. The more damage
+              you deal, the more mana you'll need. You can recover mana through
+              DEFENSE and CHARGE moves.
+            </li>
+            <li>BASIC ATTACK: Your standard attack, causing normal damage.</li>
+            <li>CRITICAL ATTACK: A special attack dealing heavy damage.</li>
+          </ul>
+
+          <ul>
+            <b>CONTROLS</b>
+            <li>
+              You can press the MOVE buttons below the stage or press key:
+            </li>
+            <li>
+              1 - for BASIC ATTACK
+            </li>
+            <li>
+              2 - for CRITICAL ATTACK
+            </li>
+            <li>
+              3 - for DEFENSE
+            </li>
+            <li>
+              4 - for CHARGE
+            </li>            
+          </ul>
+
+          <ul>
+            <b>MOVES</b>
+            <li>
+              BASIC ATTACK: A regular attack that doesn't consume much mana.
+            </li>
+            <li>
+              CRITICAL ATTACK: A powerful attack that requires a significant
+              amount of mana.
+            </li>
+            <li>
+              DEFENSE: A blocking move to protect yourself from attacks while
+              gaining extra mana.
+            </li>
+            <li>
+              CHARGE: Allows you to gain mana but leaves you vulnerable to
+              attacks.
+            </li>
+          </ul>
+
+          <ul>
+            <b>NOTE</b>
+            <li>Attack buttons will be disabled when mana reaches zero.</li>
+            <li>
+              A CRITICAL ATTACK inflicts damage(not full damage) on the opponent
+              even if they are in DEFENSE mode.
+            </li>
+            <li>
+              If your mana is lower than what's required for a CRITICAL ATTACK,
+              the damage is automatically converted to a NORMAL ATTACK.
+            </li>
+            <li>
+              DEFENSE moves are limited to five shield icons, decreasing when
+              you use DEFENSE moves and increasing when you press other buttons.
+            </li>
+            <li>
+              After defeating an opponent, you will earn bonus points that can
+              be distributed among your HEALTH, ARMOR, and MANA.
+            </li>
+            <li>
+              As you progress through the levels, your opponents will become
+              progressively tougher.
+            </li>
+            <li>
+              Conquer the game by completing each level, facing off against
+              seven challenging chicken opponents.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="fightnotif">
+      <span class="spannotif">FIGHT!</span>
+    </div>
+
+    <div class="modal-bg" id="getReadyModal">
+      <video width="100%" height="100%" id="vidfile">
+        <source src="assets\getready.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </body>
+  <script src="game.js"></script>
+  <script src="display.js"></script>
+</html>

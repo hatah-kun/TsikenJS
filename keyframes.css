@@ -1,0 +1,150 @@
+:root {
+  --HeroHealthColor: linear-gradient(
+    180deg,
+    rgba(0, 179, 12, 1) 0%,
+    rgba(162, 198, 162, 1) 24%,
+    rgba(13, 179, 0, 1) 53%,
+    rgba(65, 147, 62, 1) 86%,
+    rgba(14, 77, 14, 1) 100%
+  );
+  --EnemyHealthColor: linear-gradient(
+    180deg,
+    rgba(179, 84, 0, 1) 0%,
+    rgba(198, 179, 162, 1) 24%,
+    rgba(179, 87, 0, 1) 53%,
+    rgba(147, 100, 62, 1) 86%,
+    rgba(77, 39, 14, 1) 100%
+  );
+
+  --ShieldColor: linear-gradient(
+    180deg,
+    rgba(81, 0, 179, 1) 0%,
+    rgba(180, 162, 198, 1) 24%,
+    rgba(87, 0, 179, 1) 53%,
+    rgba(102, 62, 147, 1) 86%,
+    rgba(53, 14, 77, 1) 100%
+  );
+  --ManaColor: linear-gradient(
+    180deg,
+    rgba(0, 82, 179, 1) 0%,
+    rgba(162, 177, 198, 1) 24%,
+    rgba(0, 85, 179, 1) 53%,
+    rgba(62, 107, 147, 1) 86%,
+    rgba(14, 48, 77, 1) 100%
+  );
+
+  --RiskyColor: linear-gradient(
+    180deg,
+    rgba(179, 0, 0, 1) 0%,
+    rgba(198, 162, 162, 1) 24%,
+    rgba(179, 0, 0, 1) 53%,
+    rgba(147, 62, 62, 1) 86%,
+    rgba(77, 14, 14, 1) 100%
+  );
+}
+
+@keyframes submenu {
+  0% {
+    transform: scale(5);
+    /* transform: rotateY(180deg); */
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes herofight {
+  0% {
+    left: 0;
+  }
+  15% {
+    left: -10%;
+  }
+  27% {
+    filter: brightness(1);
+  }
+
+  30% {
+    left: 40%;
+    filter: brightness(100);
+  }
+
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes enemyfight {
+  0% {
+    right: 0;
+  }
+  15% {
+    right: -10%;
+  }
+  27% {
+    filter: brightness(1);
+  }
+
+  30% {
+    right: 40%;
+    filter: brightness(100);
+  }
+
+  100% {
+    right: 0;
+  }
+}
+
+@keyframes fightnotif {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes characterWinAnim {
+  0% {
+    transform: skewX(10deg);
+  }
+  50% {
+    transform: skewX(-10deg);
+  }
+  100% {
+    transform: skewX(10deg);
+  }
+}
+
+@keyframes winAnim {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes profileAnim {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bottomToUpAnim {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
